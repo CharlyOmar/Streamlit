@@ -13,6 +13,8 @@ df = pd.read_csv('D:\Escritorio\Software\Streamlit\Catalogo_presupuestos.csv')
 st.caption(r"A continuación se muestra la tabla \"Catálogo de presupuestos\"")
 st.dataframe(df)
 
+st.divider()
+
 st.header("Total (resultados filtrados)")
 
 #st.sidebar.header("Filtrar resultados")
@@ -25,6 +27,8 @@ st.caption(f"El total de los resultados obtenidos mediante el uso de los filtros
 #   Crear el gráfico de barras
 counts = df['nombrePadron'].value_counts()
 
+st.divider()
+
 st.header("Padrones")
 st.caption(r"Se muestra una grafica de barras para facilitar la lectura de la frecuencia de los padrones")
 
@@ -34,6 +38,8 @@ ax.set_title('Frecuencia de padrones')
 ax.set_xlabel('Padrones')
 ax.set_ylabel('Frecuencia')
 st.pyplot(fig)
+
+st.divider()
 
 #   Crear el gráfico de barras
 counts = df['marca'].value_counts()
