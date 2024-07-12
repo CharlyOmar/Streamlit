@@ -8,7 +8,7 @@ st.set_page_config(page_title='Streamlit App', page_icon='📈', layout='wide')
 #Con la siguiente linea se pueden leer todas las hojas del archivo de Excel pero el tiempo de ejecución aumenta considerablemente
 #df = pd.read_excel('D:\Escritorio\Software\Streamlit\Analisis-de-Archivo.xlsx', sheet_name='Catalogo de Presupuestos')
 
-
+st.header("Catálogo de Presupuestos")
 df = pd.read_csv('D:\Escritorio\Software\Streamlit\Catalogo_presupuestos.csv')
 st.caption(r"A continuación se muestra la tabla \"Catálogo de presupuestos\"")
 st.dataframe(df)
