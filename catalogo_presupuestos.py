@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 #   Declarar el titulo de la aplicación
 st.set_page_config(page_title='Streamlit App', page_icon='📈', layout='wide')
 
+<<<<<<< HEAD
 #   Con la siguiente linea se pueden leer todas las hojas del archivo de Excel pero el tiempo de ejecución aumenta considerablemente
 #df = pd.read_excel('D:\Escritorio\Software\Streamlit\Analisis-de-Archivo.xlsx', sheet_name='Catalogo de Presupuestos')
 
@@ -20,14 +21,39 @@ with col2:
    col2.metric("Tipos de padrones", len(df['nombrePadron'].dropna().str.upper().unique()))
 with col3:
     col3.metric("Número de usuarios", len(df['user'].dropna().str.upper().unique()))
+=======
+# Con la siguiente linea se pueden leer todas las hojas del archivo de Excel 
+# pero el tiempo de ejecución aumenta considerablemente
+# df = pd.read_excel('D:\Escritorio\Software\Streamlit\Analisis-de-Archivo.xlsx', 
+# sheet_name='Catalogo de Presupuestos')
+
+
+df = pd.read_csv('Catalogo_presupuestos.csv')
+st.caption(r"A continuación se muestra la tabla \"Catálogo de presupuestos\"")
+st.dataframe(df)
+>>>>>>> develop
 
 st.divider()
 
 st.header("Total (resultados filtrados)")
+<<<<<<< HEAD
 padron_selection = st.multiselect("Selecciona un padrón:", options=df['nombrePadron'].dropna().str.upper().unique(), placeholder="Escoge una opción")
 df_selection = df.query("nombrePadron == @padron_selection")
 total_sum = pd.to_numeric(df_selection['total'], errors='coerce').sum()
 st.caption(f"El total de los resultados obtenidos mediante el uso de los filtros es de:$ :blue[ _{total_sum}_]  MXN")
+=======
+
+# st.sidebar.header("Filtrar resultados")
+padron_selection = st.multiselect("Selecciona un padrón:", options=df['nombrePadron'].unique(), placeholder="Escoge una opción")
+
+df_selection = df.query("nombrePadron == @padron_selection")
+total_filter = int(df_selection['serie'].sum())
+
+st.caption(f"El total de los resultados obtenidos mediante el uso de los filtros es de:$ :blue[ _{total_filter}_]  MXN")
+# Crear el gráfico de barras
+counts = df['nombrePadron'].value_counts()
+
+>>>>>>> develop
 st.divider()
 
 st.header("Padrones")
@@ -35,7 +61,13 @@ st.caption(r"Se muestra una grafica de barras para facilitar la lectura de la fr
 st.bar_chart(df['nombrePadron'].str.capitalize().value_counts(), x_label="TRÁMITES", y_label="FRECUENCIA", height=600)
 st.divider()
 
+<<<<<<< HEAD
 #   Crear el gráfico de barras
+=======
+# Crear el gráfico de barras
+counts = df['marca'].value_counts()
+
+>>>>>>> develop
 st.header("Frecuencia de Marcas de Autos")
 st.caption(r"Se muestra una grafica de barras para facilitar la lectura de la frecuencia de marcas de carros")
 
