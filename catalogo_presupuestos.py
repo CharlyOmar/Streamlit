@@ -8,19 +8,21 @@ st.set_page_config(page_title='Streamlit App', page_icon='📈', layout='wide')
 #   Con la siguiente linea se pueden leer todas las hojas del archivo de Excel pero el tiempo de ejecución aumenta considerablemente
 #df = pd.read_excel('D:\Escritorio\Software\Streamlit\Analisis-de-Archivo.xlsx', sheet_name='Catalogo de Presupuestos')
 
-st.header("Catálogo de Presupuestos")
+st.title("Dashboard")
 df = pd.read_csv('D:\Escritorio\Software\Streamlit\Catalogo_presupuestos.csv')
 #   st.caption(r"A continuación se muestra la tabla \"Catálogo de presupuestos\"")
 #   st.dataframe(df)
+tramite_mas_realizado = df['nombrePadron'].dropna().str.capitalize().value_counts().idxmax()
 
-col1, col2, col3 = st.columns((2, 2, 2), gap='medium')
+col1, col2, col3, col4 = st.columns((2, 2, 2, 2), gap='medium')
 with col1:
    col1.metric("Trámites realizados",df.nombrePadron.size)
 with col2:
    col2.metric("Tipos de padrones", len(df['nombrePadron'].dropna().str.upper().unique()))
 with col3:
     col3.metric("Número de usuarios", len(df['user'].dropna().str.upper().unique()))
-
+with col4:
+    col4.metric("Trámite más realizado", tramite_mas_realizado)
 st.divider()
 
 st.header("Total (resultados filtrados)")
