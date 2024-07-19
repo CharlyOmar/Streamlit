@@ -57,23 +57,12 @@ df.insert(0, "NO.", range(1, len(df) + 1))
 # Imprime los 100 datos
 st.dataframe(df)
 
-# Gráfico de barras: Tipo de trámite que más se realiza
-st.subheader("Tipo de Trámite que Más se Realiza")
-tramite_counts = df["TRÁMITE"].value_counts()
-fig, ax = plt.subplots()
-sns.barplot(x=tramite_counts.index, y=tramite_counts.values, ax=ax)
-ax.set_xlabel("Tipo de Trámite")
-ax.set_ylabel("Número de Trámites")
-ax.set_title("Número de Trámites por Tipo")
-st.pyplot(fig)
+# Crear el gráfico de barras
+counts = df['NOMBRE PADRÓN'].value_counts()
 
-# Gráfico de líneas: Frecuencia de trámites a lo largo del tiempo
-st.subheader("Frecuencia de Trámites a lo Largo del Tiempo")
-df["DATE"] = df["@timestamp"].dt.date
-tramites_por_fecha = df.groupby(["DATE", "ID_TRAMITE"]).size().unstack().fillna(0)
-fig, ax = plt.subplots()
-tramites_por_fecha.plot(ax=ax)
-ax.set_xlabel("Fecha")
-ax.set_ylabel("Número de Trámites")
-ax.set_title("Frecuencia de Trámites por Fecha")
-st.pyplot(fig)
+st.divider()
+
+st.header("Padrones")
+st.caption(r"Grafica de barras para la lectura de la frecuencia de los padrones")
+st.bar_chart(df['NOMBRE PADRÓN'].str.capitalize().value_counts(), x_label="TRÁMITES", y_label="FRECUENCIA", height=600)
+st.divider()
