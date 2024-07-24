@@ -1,19 +1,11 @@
 import streamlit as st
 import pandas as pd
-<<<<<<< HEAD
 import plotly.express as px
 from dateutil import parser
 # import os
+# import altair as alt
 # import matplotlib.pyplot as plt
 # import seaborn as sns
-# import altair as alt
-=======
-# import altair as alt
-import plotly.express as px
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-from dateutil import parser
->>>>>>> e61a0dcf939fcc1cfce3492cddc43cb71e363e2c
 
 # Declarar el título de la aplicación
 st.set_page_config(page_title="Streamlit", page_icon="📈", layout="wide")
@@ -41,11 +33,7 @@ file_path = "Catalogo_presupuestos.csv"
 st.header("Catálogo de Presupuestos")
 
 # Tamaño de la muestra
-<<<<<<< HEAD
-sample_size = 2000
-=======
 sample_size = 150
->>>>>>> e61a0dcf939fcc1cfce3492cddc43cb71e363e2c
 
 # Cargar una muestra aleatoria del archivo
 df = pd.read_csv(file_path).sample(n=sample_size, random_state=1)
@@ -99,7 +87,6 @@ st.dataframe(df)
 filtered_counts = df['NOMBRE PADRÓN'].value_counts()
 filtered_counts = filtered_counts[filtered_counts > 20].reset_index()
 filtered_counts.columns = ['NOMBRE PADRÓN', 'FRECUENCIA']
-<<<<<<< HEAD
 
 # Item con mayor frecuencia
 max_freq_item = filtered_counts.loc[filtered_counts['FRECUENCIA'].idxmax()]
@@ -169,8 +156,6 @@ st.plotly_chart(fig_max, use_container_width=True)
 st.divider()
 st.header("Ítem con Menor Frecuencia")
 st.plotly_chart(fig_min, use_container_width=True)
-=======
->>>>>>> e61a0dcf939fcc1cfce3492cddc43cb71e363e2c
 
 # Crear el gráfico de barras con Plotly
 fig = px.bar(
@@ -197,7 +182,6 @@ st.divider()
 # Observación: con este gráfico no es posible interactuar con los valores 
 # sino que es estatico además de que requiere la librería de matplot
 
-<<<<<<< HEAD
 # st.divider()
 # st.header("Padrones")
 # st.caption(r"Grafica de barras para la lectura de la frecuencia de los padrones")
@@ -211,7 +195,6 @@ st.divider()
 # st.pyplot(fig)
 # st.divider()
 
-=======
 """
 # Crea el gráfico con Matplotlib 
 ## Observación: con este gráfico no es posible interactuar con los valores 
@@ -232,7 +215,6 @@ st.divider()
 """ 
 
 """ 
->>>>>>> e61a0dcf939fcc1cfce3492cddc43cb71e363e2c
 # Crea el gráfico de barras con Altair
 # Observación: se tiene que especificar el tipo de variable que es
 # asi como usar la librería Altair aunque esta opcion NO FUNCIONÓ
@@ -241,18 +223,14 @@ st.divider()
 # st.write(df['NOMBRE PADRÓN'].head())
 
 # gráfico
-<<<<<<< HEAD
 # count = df['NOMBRE PADRÓN'].str.capitalize().value_counts().reset_index()
 # counts.columns = ['NOMBRE PADRÓN', 'FRECUENCIA']
-=======
 count = df['NOMBRE PADRÓN'].str.capitalize().value_counts().reset_index()
 counts.columns = ['NOMBRE PADRÓN', 'FRECUENCIA']
->>>>>>> e61a0dcf939fcc1cfce3492cddc43cb71e363e2c
 
 # Verificar los datos de 'counts'
 # st.write(counts.head())
 
-<<<<<<< HEAD
 # colors = alt.Scale(
 #     domain=['Impuesto sobre nómina', 'Refrendo', 'Replaqueo'],
 #     range=['red', 'yellow', 'blue']
@@ -271,7 +249,6 @@ counts.columns = ['NOMBRE PADRÓN', 'FRECUENCIA']
 # st.caption(r"Grafica de barras sobre la frecuencia de los padrones")
 # st.altair_chart(chart, use_container_width=True)
 # st.divider()
-=======
 colors = alt.Scale(
     domain=['Impuesto sobre nómina', 'Refrendo', 'Replaqueo'],
     range=['red', 'yellow', 'blue']
@@ -291,4 +268,3 @@ st.caption(r"Grafica de barras sobre la frecuencia de los padrones")
 st.altair_chart(chart, use_container_width=True)
 st.divider()
 """ 
->>>>>>> e61a0dcf939fcc1cfce3492cddc43cb71e363e2c
